@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "express": "^4.19.2"
+  },
+  "name": "rabbitmq_project",
+  "version": "1.0.0",
+  "description": "Messaging app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node config/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/docblizzard/rabbitMQ_Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/docblizzard/rabbitMQ_Project/issues"
+  },
+  "homepage": "https://github.com/docblizzard/rabbitMQ_Project#readme"
+}
