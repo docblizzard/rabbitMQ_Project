@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var amqp = require('amqplib/callback_api');
+const sqlite3 = require('sqlite3').verbose();
 
 async function receiveMessage(recipient) {
 
@@ -29,4 +30,17 @@ async function receiveMessage(recipient) {
     });
 }
 
-module.exports = { receiveMessage };
+function saveMessage(message) {
+    const db = new sqlite3.Database('mydatabase.db');
+    const timestamp = new Date().toISOString();
+    db.run("INSERT INTO message (content, sender, recipient, date) VALUES (?, ?, ?, ?)",
+        [message.content, message.sender, message.recipient, timestamp],
+        function (err) {
+            if (err) {
+                return console.error(err.message);
+            }
+            console.log(`A message has been inserted with ID ${this.lastID}`);
+        });
+}
+
+module.exports = { receiveMessage, saveMessage };
